@@ -16,6 +16,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	@Autowired
 	private OrderDetailRepository orderDetailRepository;
 	
+	@Autowired
+	private OrderService orderService;
+	
 	@Override
 	public List<OrderDetail> getOrderDetails(Long orderId) {
 		return orderDetailRepository.findByOrderId(orderId);
@@ -23,7 +26,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
 	@Override
 	public OrderDetail createOrderDetail(OrderDetail orderDetail) {
-		return orderDetailRepository.save(orderDetail);
+		orderDetail =  orderDetailRepository.save(orderDetail);
+		orderService.recalculateOrderTotalPrice(orderDetail.getOrder().getId());
+		return orderDetail;
 	}
 
 	@Override
@@ -33,7 +38,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 			orderDetail.setAmount(orderDetailRequest.getAmount());
 			orderDetail.setPrice(orderDetailRequest.getPrice());
 			orderDetail.setSubTotal(orderDetailRequest.getAmount() * orderDetailRequest.getPrice());
-			return orderDetailRepository.save(orderDetail); 
+			orderDetail =  orderDetailRepository.save(orderDetail);
+			orderService.recalculateOrderTotalPrice(orderDetail.getOrder().getId());
+			return orderDetail;
 		} else {
 			throw new ResourceNotFoundException("Order Detail Id "+orderDetailId+" Not Found!");
 		}
@@ -44,6 +51,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 		OrderDetail orderDetail = orderDetailRepository.findById(orderDetailId).orElse(null);
 		if(orderDetail != null) {
 			orderDetailRepository.delete(orderDetail);
+			orderService.recalculateOrderTotalPrice(orderDetail.getOrder().getId());
 			return ResponseEntity.ok().build();
 		} else {
 			throw new ResourceNotFoundException("Order Detail Id "+orderDetailId+" Not Found!");

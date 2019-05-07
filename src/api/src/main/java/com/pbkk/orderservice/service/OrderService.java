@@ -11,5 +11,5 @@ public interface OrderService {
 	Order getOrder(Long orderId);
 	Order createOrder(Order order);
 	Order updateOrderStatus(Long orderId, Integer status);
-	
+	void recalculateOrderTotalPrice(Long orderId);
 }

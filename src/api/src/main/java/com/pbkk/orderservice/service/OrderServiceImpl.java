@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pbkk.orderservice.exception.ResourceNotFoundException;
 import com.pbkk.orderservice.model.Order;
+import com.pbkk.orderservice.model.OrderDetail;
 import com.pbkk.orderservice.repository.OrderRepository;
 
 @Service
@@ -46,6 +47,20 @@ public class OrderServiceImpl implements OrderService {
 			return orderRepository.save(order);
 		} else {
 			throw new ResourceNotFoundException("Order Id "+ orderId + " not found!");
+		}
+	}
+
+	@Override
+	public void recalculateOrderTotalPrice(Long orderId) {
+		Order order = orderRepository.findById(orderId).orElse(null);
+		if (order != null) {
+			List<OrderDetail> orderDetails = order.getOrderDetails();
+			Double totalPrice = 0.0;
+			for ( OrderDetail orderDetail: orderDetails) {
+				totalPrice += orderDetail.getSubTotal();
+			}
+			order.setTotalPrice(totalPrice);
+			orderRepository.save(order);
 		}
 	}
 

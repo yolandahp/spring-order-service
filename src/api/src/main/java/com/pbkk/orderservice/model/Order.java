@@ -1,5 +1,6 @@
 package com.pbkk.orderservice.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,9 +64,9 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_at")
 	@LastModifiedDate
-	private Date updateAt;
+	private Date updatedAt;
 	
 	@OneToMany(mappedBy = "order")
-	private List<OrderDetail> orderDetails;
+	private List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
 	
 }

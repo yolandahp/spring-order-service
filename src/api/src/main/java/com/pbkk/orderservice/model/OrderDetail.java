@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -25,10 +26,11 @@ public class OrderDetail {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "order_id", nullable = false)
 	private Order order;
-	
+
 	@Column(name = "menu_id")
 	private Long menuId;
 	
@@ -49,6 +51,6 @@ public class OrderDetail {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_at")
 	@LastModifiedDate
-	private Date updateAt;
+	private Date updatedAt;
 
 }
