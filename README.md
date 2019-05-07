@@ -13,4 +13,5 @@ PBKK C
 ![PDM](datamodel/PDM.jpg)
 
 ## API Docs
-https://app.swaggerhub.com/apis-docs/yolandahp/order-service/1.0.0
+[Swagger](https://app.swaggerhub.com/apis-docs/yolandahp/order-service/1.0.0)
+[Postman](https://documenter.getpostman.com/view/7460609/S1LvV8Et)

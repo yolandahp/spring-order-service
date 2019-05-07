@@ -1,19 +1,20 @@
 package com.pbkk.orderservice.controller;
 
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
 
 import com.pbkk.orderservice.model.Order;
@@ -22,7 +23,7 @@ import com.pbkk.orderservice.service.OrderDetailService;
 import com.pbkk.orderservice.service.OrderService;
 
 @RequestMapping("/orders")
-@RestController
+@RestControllerAdvice
 public class OrderController {
 	
 	@Autowired
@@ -55,7 +56,7 @@ public class OrderController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Order createOrder(
-			@RequestBody Order orderRequest
+			@Valid @RequestBody Order orderRequest
 			) {
 		Order newOrder = new Order();
 		newOrder.setCustomerId(orderRequest.getCustomerId());
@@ -87,7 +88,7 @@ public class OrderController {
 		return orderService.getOrder(orderId);
 	}
 	
-	@PutMapping("/{id}/status")
+	@PatchMapping("/{id}/status")
 	public Order updateOrderStatus(
 			@PathVariable(name = "id") Long orderId,
 			@RequestParam(name = "status") Integer status
