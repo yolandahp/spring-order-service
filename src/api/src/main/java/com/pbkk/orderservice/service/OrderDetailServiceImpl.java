@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.pbkk.orderservice.exception.ResourceNotFoundException;
+import com.pbkk.orderservice.model.Order;
 import com.pbkk.orderservice.model.OrderDetail;
 import com.pbkk.orderservice.repository.OrderDetailRepository;
 
@@ -21,7 +22,12 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	
 	@Override
 	public List<OrderDetail> getOrderDetails(Long orderId) {
-		return orderDetailRepository.findByOrderId(orderId);
+		List<OrderDetail> orderDetails = orderDetailRepository.findByOrderId(orderId);
+		if (orderDetails.isEmpty()) {
+			throw new ResourceNotFoundException("Order Id "+orderId+" Not Found!");
+		} else {
+			return orderDetails;
+		}
 	}
 
 	@Override
@@ -29,6 +35,19 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 		orderDetail =  orderDetailRepository.save(orderDetail);
 		orderService.recalculateOrderTotalPrice(orderDetail.getOrder().getId());
 		return orderDetail;
+	}
+
+	@Override
+	public OrderDetail createOrderDetail(Long orderId, OrderDetail orderDetail) {
+		Order order = orderService.getOrder(orderId);
+		if (order != null) {
+			orderDetail.setOrder(order);
+			OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
+			orderService.recalculateOrderTotalPrice(orderId);
+			return newOrderDetail;
+		} else {
+			throw new ResourceNotFoundException("Order Id "+orderId+" Not Found!");
+		}
 	}
 
 	@Override

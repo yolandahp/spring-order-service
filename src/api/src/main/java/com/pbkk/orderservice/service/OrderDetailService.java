@@ -10,7 +10,8 @@ public interface OrderDetailService {
 
 	List<OrderDetail> getOrderDetails(Long orderId);
 	OrderDetail createOrderDetail(OrderDetail orderDetail);
-	OrderDetail updateOrderDetail(Long orderDetailId,OrderDetail orderDetailRequest);
+	OrderDetail createOrderDetail(Long orderId, OrderDetail orderDetail);
+	OrderDetail updateOrderDetail(Long orderDetailId, OrderDetail orderDetailRequest);
 	ResponseEntity<?> deleteOrderDetail(Long orderDetailId);
 	
 }
