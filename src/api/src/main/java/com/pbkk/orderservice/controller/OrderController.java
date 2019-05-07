@@ -37,18 +37,40 @@ public class OrderController {
 	public Order createOrder(
 			@RequestBody Order orderRequest
 			) {
-		System.out.println(orderRequest);
-		Order newOrder = orderRequest;
-		List<OrderDetail> newOrderDetail = orderRequest.getOrderDetails();
-		System.out.println(orderRequest.getOrderDetails());
+		Order newOrder = new Order();
+		newOrder.setCustomerId(orderRequest.getCustomerId());
+		newOrder.setRestaurantId(orderRequest.getRestaurantId());
+		newOrder.setDeliveryAddress(orderRequest.getDeliveryAddress());
+		newOrder.setStatus(orderRequest.getStatus());
+		newOrder.setNotes(orderRequest.getNotes());
+		newOrder.setPrice(orderRequest.getPrice());
+		newOrder.setDeals(orderRequest.getDeals());
+		newOrder.setTotalPrice(orderRequest.getTotalPrice());
+		Order fixOrder = orderService.createOrder(newOrder);
 		
-		List<OrderDetail> temp = newOrderDetail.stream().map(orderDetail -> {
-			orderDetail.setOrder(newOrder);
-			return orderDetailService.createOrderDetail(orderDetail);
-		}).collect(Collectors.toList());
-		System.out.println(temp);
-		newOrder.setOrderDetails(temp);
+		for(OrderDetail orderDetail: orderRequest.getOrderDetails()) {
+			OrderDetail newOrderDetail = new OrderDetail();
+			newOrderDetail.setMenuId(orderDetail.getMenuId());
+			newOrderDetail.setPrice(orderDetail.getPrice());
+			newOrderDetail.setAmount(orderDetail.getAmount());
+			newOrderDetail.setSubTotal(orderDetail.getSubTotal());
+			newOrderDetail.setOrder(newOrder);
+			newOrder.getOrderDetails().add(newOrderDetail);
+			orderDetailService.createOrderDetail(newOrderDetail);
+		}
+				
+		return fixOrder;
 		
-		return orderService.createOrder(newOrder);
+//		
+//		Order newOrder = orderRequest;
+//		List<OrderDetail> newOrderDetail = orderRequest.getOrderDetails();
+//		System.out.println(orderRequest.getOrderDetails());
+//		
+//		List<OrderDetail> temp = newOrderDetail.stream().map(orderDetail -> {
+//			orderDetail.setOrder(newOrder);
+//			return orderDetailService.createOrderDetail(orderDetail);
+//		}).collect(Collectors.toList());
+//		System.out.println(temp);
+//		newOrder.setOrderDetails(temp);
 	}
 }
