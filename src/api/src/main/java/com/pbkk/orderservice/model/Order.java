@@ -29,6 +29,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@Column(name = "customer_id")
 	private Long customerId;
 	
@@ -36,13 +37,16 @@ public class Order {
 	@Column(name = "restaurant_id")
 	private Long restaurantId;
 	
+	@NotNull
 	@Size(max = 500)
 	@Column(name = "delivery_address")
 	private String deliveryAddress;
 	
+	@NotNull
 	@Column(name = "status")
 	private Integer status;
 	
+	@NotNull
 	@Size(max = 1000)
 	@Column(name = "notes")
 	private String notes;

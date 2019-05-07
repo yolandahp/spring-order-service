@@ -3,6 +3,8 @@ package com.pbkk.orderservice.model;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -29,13 +31,16 @@ public class OrderDetail {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "order_id")
 	private Order order;
-
+	
+	@NotNull
 	@Column(name = "menu_id")
 	private Long menuId;
 	
+	@NotNull
 	@Column(name = "price")
 	private Double price;
 	
+	@NotNull
 	@Column(name = "amount")
 	private Long amount;
 	
