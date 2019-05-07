@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 import com.pbkk.orderservice.model.Order;
 import com.pbkk.orderservice.model.OrderDetail;
@@ -33,7 +35,9 @@ public class OrderController {
 		return orderService.getAllOrders();
 	}
 	
+	
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public Order createOrder(
 			@RequestBody Order orderRequest
 			) {
@@ -60,17 +64,5 @@ public class OrderController {
 		}
 				
 		return fixOrder;
-		
-//		
-//		Order newOrder = orderRequest;
-//		List<OrderDetail> newOrderDetail = orderRequest.getOrderDetails();
-//		System.out.println(orderRequest.getOrderDetails());
-//		
-//		List<OrderDetail> temp = newOrderDetail.stream().map(orderDetail -> {
-//			orderDetail.setOrder(newOrder);
-//			return orderDetailService.createOrderDetail(orderDetail);
-//		}).collect(Collectors.toList());
-//		System.out.println(temp);
-//		newOrder.setOrderDetails(temp);
 	}
 }
