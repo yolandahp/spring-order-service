@@ -31,7 +31,8 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Order getOrder(Long orderId) {
-		return orderRepository.findById(orderId).orElse(null);
+		return orderRepository.findById(orderId)
+				.orElseThrow(() -> new ResourceNotFoundException("Order Id "+ orderId + " not exist"));
 	}
 
 	@Override
@@ -55,10 +56,12 @@ public class OrderServiceImpl implements OrderService {
 		Order order = orderRepository.findById(orderId).orElse(null);
 		if (order != null) {
 			List<OrderDetail> orderDetails = order.getOrderDetails();
-			Double totalPrice = 0.0;
+			Double price = 0.0;
 			for ( OrderDetail orderDetail: orderDetails) {
-				totalPrice += orderDetail.getSubTotal();
+				price += orderDetail.getSubTotal();
 			}
+			order.setPrice(price);
+			Double totalPrice = price - order.getDeals();
 			order.setTotalPrice(totalPrice);
 			orderRepository.save(order);
 		}
