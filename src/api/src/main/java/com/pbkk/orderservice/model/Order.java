@@ -61,9 +61,6 @@ public class Order {
 	@Column(name = "deals")
 	private Double deals;
 	
-	@Column(name = "deals")
-	private Double deals;
-	
 	@Column(name = "total_price")
 	private Double totalPrice;
 	
