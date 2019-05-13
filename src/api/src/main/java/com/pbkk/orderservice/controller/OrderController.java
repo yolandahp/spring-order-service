@@ -33,21 +33,26 @@ public class OrderController {
 	private OrderDetailService orderDetailService;
 	
 	@GetMapping()
-	public List<Order> getAllOrder(@RequestParam(name = "status", required = false) String status){
+	public List<Order> getAllOrder(
+			@RequestParam(name = "status", required = false) String status,
+			@RequestParam(name = "customerId", required = false) Integer customerId
+			){
 		if (status != null) {
 			if (status.equals("ongoing")) {
-				List<Order> ongoing = orderService.getOrdersByStatus(1);
-				ongoing.addAll(orderService.getOrdersByStatus(2));
-				ongoing.addAll(orderService.getOrdersByStatus(3));
+				List<Order> ongoing = orderService.getOrdersByParameter(1,customerId);
+				ongoing.addAll(orderService.getOrdersByParameter(2,customerId));
+				ongoing.addAll(orderService.getOrdersByParameter(3,customerId));
 				return ongoing;
 			}
 			if (status.equals("completed")) {
-				return orderService.getOrdersByStatus(4);
+				return orderService.getOrdersByParameter(4,customerId);
 			}
 			if (status.equals("cancelled")) {
-				return orderService.getOrdersByStatus(9);
+				return orderService.getOrdersByParameter(9,customerId);
 			}
 			return null;
+		} else if(customerId != null){
+			return orderService.getOrdersByParameter(null,customerId);
 		}
 		return orderService.getAllOrders();
 	}

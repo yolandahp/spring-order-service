@@ -11,6 +11,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.Data;
 
@@ -22,6 +24,7 @@ import lombok.Data;
 		value = {"createdAt", "updatedAt"},
 		allowGetters = true
 )
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class OrderDetail {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

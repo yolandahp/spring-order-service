@@ -2,6 +2,7 @@ package com.pbkk.orderservice.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,17 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> getAllOrders() {
 		return orderRepository.findAll();
 	}
-
+	
 	@Override
-	public List<Order> getOrdersByStatus(Integer status) {
-		return orderRepository.findAll().stream()
-				.filter(order -> order.getStatus().intValue() == status.intValue())
-				.collect(Collectors.toList());
+	public List<Order> getOrdersByParameter(Integer status, Integer customerId) {
+		Stream<Order> orders = orderRepository.findAll().stream();
+		if(status != null) {
+			orders = orders.filter(order -> order.getStatus().intValue() == status.intValue());
+		}
+		if(customerId != null) {
+			orders = orders.filter(order -> order.getCustomerId().intValue() == customerId.intValue());
+		}
+		return orders.collect(Collectors.toList());
 	}
 
 	@Override
