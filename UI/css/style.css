@@ -1,0 +1,102 @@
+html, body {
+    background-color: #F3EFF5;
+    padding-top: 20px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-light .navbar-brand {
+    color: #72B01D;
+    font-weight: 600;
+}
+
+.carousel-inner>.carousel-item>img {
+    width: 100%;
+}
+
+.carousel-caption {
+    top: 40%;
+}
+
+.carousel-caption>.outer-order-form>h1 {
+    font-size: 32px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+.overlay {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(69,73,85, 0.3);
+}
+
+a.button-find {
+    display: inline-block;
+    padding: 0.8em 5em;
+    margin: 0 0.5em 0.5em 0;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #72B01D;
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+    text-align: center;
+    position: relative;
+}
+
+a.button-find:active {
+    top:0.1em;
+}
+
+.restaurants>.container {
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+}
+
+.container h3{
+    color: #3F7D20;
+    font-weight: 600;
+}
+
+.card .card-img img { 
+    border-radius: 6px 6px 0 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card .card-img { 
+    position: relative; 
+    padding: 0; 
+    display: table;
+    height: 180px; 
+}
+
+.card-body h5 a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #72B01D;
+}
+
+.card-body h5 a:hover {
+    text-decoration: none;
+    color: #3F7D20;
+}
+
+.card-body p {
+    font-size: 12px;
+}
+
+.card-container .col-md-3 {
+    margin-top: 20px;
+}
