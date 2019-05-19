@@ -208,3 +208,73 @@ a.button-find:active {
 #modal-cart .modal-footer button {
     font-size: 12px;
 }
+
+
+
+/*-----------Payment-----------*/
+
+.container.payment-container {
+    background-color: #FFFFFF;
+}
+
+.payment-container .card {
+    margin-bottom: 30px;
+}
+
+.payment-container .card .card-header {
+    background-color: #72B01D;
+}
+
+.card-order table td:nth-child(2) {
+    text-align: right;
+}
+
+.card-order table td button {
+    background-color: #72B01D;
+    font-size: 14px;
+}
+
+.card-detail-order table td:nth-child(4) {
+    text-align: right;
+}
+
+.card-order .card-footer h5 {
+    display: inline;
+}
+
+.card-order .card-footer h5 {
+    text-align: right;
+}
+
+.card-order .card-footer h5:nth-child(2) {
+    float: right;
+}
+
+#modalInputKodePromo .modal-footer button {
+    background-color: #72B01D;
+    font-size: 14px;
+}
+
+a.button-order {
+    display: inline-block;
+    padding: 0.8em 5em;
+    margin: 0 0.5em 0.5em 0;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 18px;
+    color: #FFFFFF;
+    background-color: #72B01D;
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+    text-align: center;
+    position: relative;
+}
+
+a.button-order:active {
+    top:0.1em;
+}
+
+.button-order-div {
+    text-align: center;
+    margin-top: 50px;
+}

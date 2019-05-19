@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Order Service</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-light bg-light">
+            <a class="navbar-brand" href="restaurant.html">
+                <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                MyFood
+            </a>
+        </nav>
+
+        <div class="container payment-container">
+            <div class="card card-detail-order">
+                <div class="card-header">
+                    Detail Order
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Ayam Goreng</td>
+                                <td><b>x</b> 2</td>
+                                <td><b>@</b> 15000</td>
+                                <td>30000</td>
+                            </tr>
+                            <tr>
+                                <td>Ikan Goreng</td>
+                                <td><b>x</b> 3</td>
+                                <td><b>@</b> 20000</td>
+                                <td>60000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card card-order">
+                <div class="card-header">
+                    Order
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Total Makanan</td>
+                                <td>90000</td>
+                            </tr>
+                            <tr>
+                                <td>Biaya Antar</td>
+                                <td>10000</td>
+                            </tr>
+                            <tr>
+                                <td>Promo</td>
+                                <td>
+                                    <button type="button" class="btn" data-toggle="modal" data-target="#modalInputKodePromo">Input Kode Promo</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Notes</td>
+                                <td>
+                                    <textarea name="comments" id="comments" class="form-control" rows="2"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <h5>Total: </h5>
+                    <h5>100000</h5>
+                </div>
+
+
+                <div class="modal fade bd-example-modal-sm" id="modalInputKodePromo" tabindex="-1" role="dialog" aria-labelledby="inputKodePromoLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Input Kode Promo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" class="form-control" id="inputKodePromo" placeholder="Enter promo code">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn">Gunakan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="button-order-div">
+                <a href="#" class="button-order" id="button-order">Order</a>
+            </div>
+        </div>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <script src="js/script.js"></script>
+    </body>
+
+</html>
