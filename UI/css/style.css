@@ -168,16 +168,33 @@ a.button-find:active {
      background: #72B01D;
  }
 
+ .card-container .inline p {
+    width: 40%;
+ }
+
+ .card-container .inline>button {
+     width: 60%;
+ }
+
+ .card-container .inline .tambah-kurang {
+     width: 60%;
+ }
+
+ .card-container .inline .tambah-kurang .input-group {
+     width: 100%;
+ }
+
+
 .preview-price {
-    width: 60%;
+    width: 50%;
     height: 40px;
     right: 0;
     left: 0;
     bottom: 0;
     position: fixed;
     left: 50%;
-    margin-left: -30%;
-    padding: 0 30px;
+    margin-left: -25%;
+    padding: 0 25px;
     background: #72B01D;
     border-radius: 6px; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -207,6 +224,14 @@ a.button-find:active {
 
 #modal-cart .modal-footer button {
     font-size: 12px;
+}
+
+#modal-cart .modal-footer {
+    display: block;
+}
+
+#modal-cart .modal-footer * {
+    margin-left: 0 !important;
 }
 
 
