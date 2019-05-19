@@ -16,4 +16,4 @@ PBKK C
 [Swagger](https://app.swaggerhub.com/apis-docs/yolandahp/order-service/1.0.0)
 [Postman](https://documenter.getpostman.com/view/7460609/S1LvV8Et)
 
-https://rapunjel.southeastasia.cloudapp.azure.com/orders
+https://rapunjel.southeastasia.cloudapp.azure.com/api/
