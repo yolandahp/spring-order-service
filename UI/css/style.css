@@ -100,3 +100,111 @@ a.button-find:active {
 .card-container .col-md-3 {
     margin-top: 20px;
 }
+
+
+/* Menu Restaurant */
+
+.header-restaurant {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.header-caption {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    z-index: 1;
+    text-align: left;
+}
+
+.header-caption h3 {
+    color: #FFFFFF;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.header-caption h5 {
+    color: #FFFFFF;
+    font-size: 15px;
+}
+
+.header-restaurant img {
+    width: 100%;
+}
+
+.container-menu {
+    background-color: #FFFFFF;
+    padding: 0;
+    padding-top: 0 !important;
+}
+
+.container {
+    padding-top: 5vh;
+    padding-bottom: 10vh;
+}
+
+.card .card-body .inline{
+    display:  flex;
+    justify-content: space-between;
+ }
+
+ .card .card-body .inline > *{
+     display: inline-block;
+ }
+
+ .card .card-body .inline > *:nth-child(2) {
+     float: right;
+     width: 30%;
+ }
+
+ .card .card-body .inline button{
+    background: #72B01D;
+    font-weight: 400;
+ }
+
+ .card .card-body .inline .btn-number {
+     background: #72B01D;
+ }
+
+.preview-price {
+    width: 60%;
+    height: 40px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    left: 50%;
+    margin-left: -30%;
+    padding: 0 30px;
+    background: #72B01D;
+    border-radius: 6px; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.preview-price > * {
+    display: inline-block;
+    color: white;
+}
+
+.preview-price > *:nth-child(1), .preview-price > *:nth-child(2) {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.preview-price > *:nth-child(3) {
+    float: right;
+    margin-top: 5px;
+    background: transparent;
+    border: 1px solid white;
+}
+
+#modal-cart .modal-footer h5 {
+    font-size: 16px;
+}
+
+#modal-cart .modal-footer button {
+    font-size: 12px;
+}
