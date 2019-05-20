@@ -301,18 +301,18 @@
                 localStorage.setItem('detailorder', JSON.stringify(objdetailorder));
 
                 location.href = "payment.html"
+            }
 
-                function login(){
-                    let server = new APIService()
-                    let username = $('#username-field').val();
-                    let password = $('#password-field').val();
+            function login(){
+                let server = new APIService()
+                let username = $('#username-field').val();
+                let password = $('#password-field').val();
 
-                    let userFetch = server.getUserData(username, password);
-                    
-                    userFetch.then( data => {
-                        localStorage.setItem('user', data);
-                    })
-                }
+                let userFetch = server.getUserData(username, password);
+                
+                userFetch.then( data => {
+                    localStorage.setItem('user', data);
+                })
             }
 
         </script>
