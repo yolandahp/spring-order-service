@@ -52,8 +52,8 @@
                             <th scope="col">Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="history-row-table">
+                            <!-- <tr>
                                 <td>1</td>
                                 <td>1</td>
                                 <td>50000</td>
@@ -70,7 +70,7 @@
                                 <td>2</td>
                                 <td>90000</td>
                                 <td>OK</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -88,7 +88,39 @@
             let server = new APIService()
             let historyorder = server.getAllOrder()
 
-            console.log(historyorder)
+            historyorder.then((order)=> {
+                
+                for ( var key in order ) {
+                    let textHtml = ""
+                    if(order[key].status == "1"){
+                        textHtml += "<span class='badge badge-dark' style='padding-top: 8px; padding-bottom: 8px; width:120px;'>Confirmed</span>"
+                    }
+                    else if(order[key].status == "2"){
+                        textHtml += "<span class='badge badge-info' style='padding-top: 8px; padding-bottom: 8px; width:120px;'>Delivering</span>"   
+                    }
+                    else if(order[key].status == "3"){
+                        textHtml += "<span class='badge badge-primary' style='padding-top: 8px; padding-bottom: 8px; width:120px;'>Delivered</span>"   
+                    }
+                    else if(order[key].status == "4"){
+                        textHtml += "<span class='badge badge-success' style='padding-top: 8px; padding-bottom: 8px; width:120px;'>Completed</span>"   
+                    }
+                    else if(order[key].status == "9"){
+                        textHtml += "<span class='badge badge-danger' style='padding-top: 8px; padding-bottom: 8px; width:120px;'>Cancelled</span>"   
+                    }
+
+                    $('#history-row-table').append(
+                        "<tr>"+
+                            "<td>"+ order[key].id +"</td>"+
+                            "<td>"+ order[key].restaurant_id +"</td>"+
+                            "<td>"+ "Rp. " + order[key].total_price +  ",00" +"</td>"+
+                            "<td>"+ textHtml +"</td>"+
+                        "</tr>"
+                    )
+                }
+
+            })
+
+            
         </script>
     </body>
 

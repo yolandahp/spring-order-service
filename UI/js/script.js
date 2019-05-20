@@ -69,26 +69,6 @@ function pilihMenu(id, nama, harga){
                     "</button>"+
                 "</td>"+
             "</tr>"
-
-
-
-
-            // "<tr id='tabletr_" +id + "'><td style='justify-content: space-between; display: inline-flex;'><h5 style='margin: auto; margin-right: 50px; font-size: 14px !important;' >"+nama+
-            // "</h5><div style='display: block;margin: auto; margin-right: 50px'>"+
-            //     "<div class='input-group' style='width: 120px;'><span class='input-group-btn'>"+
-            //         "<button type='button' class='btn btn-default btn-number btn-number"+id+"' data-type='minus' data-field='popupjumlah_"+id+"'>"+
-            //             "-"+
-            //         "</button>"+
-            //         "</span>"+
-            //         "<input type='text' name='popupjumlah_"+id+"' class='form-control input-number' value='1' min='1' max='10' id='asd"+id+"'>"+
-            //         "<span class='input-group-btn'>"+
-            //             "<button type='button' class='btn btn-default btn-number btn-number"+id+"' data-type='plus' data-field='popupjumlah_"+id+"'>"+
-            //                 "+"+
-            //             "</button>"+
-            //         "</span>"+
-            //     "</div>"+
-            // "</div>"+
-            // "<div  id='hargaMenu_"+id+"' style='margin: auto'>" + harga + "</div><button type='button' onclick='hapusMenu("+id+","+harga+")' class='close' style='margin: auto; margin-left: 20px;margin-right: -15px;'>&times;</button></td></tr>"
         )
         test(".btn-number"+id, "#asd"+id);
 
