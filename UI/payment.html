@@ -42,20 +42,9 @@
                     Detail Order
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" id="table-order-detail">
                         <tbody>
-                            <tr>
-                                <td>Ayam Goreng</td>
-                                <td><b>x</b> 2</td>
-                                <td><b>@</b> 15000</td>
-                                <td>30000</td>
-                            </tr>
-                            <tr>
-                                <td>Ikan Goreng</td>
-                                <td><b>x</b> 3</td>
-                                <td><b>@</b> 20000</td>
-                                <td>60000</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -66,10 +55,10 @@
                     Order
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" id="table-order">
                         <tbody>
                             <tr>
-                                <td>Total Makanan</td>
+                                <td>Total Harga Makanan</td>
                                 <td>90000</td>
                             </tr>
                             <tr>
@@ -129,6 +118,45 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
         <script src="js/script.js"></script>
+        <script>
+            
+            var detailorder = JSON.parse(localStorage.getItem('detailorder'));
+            var user_id = detailorder.user_id
+            var restaurant_id = detailorder.restaurant_id
+            var total_harga = detailorder.total_harga
+            
+            for ( var key in detailorder.orderdetail ) {
+                var id_menu =  detailorder.orderdetail[key].menu_restaurant
+                var nama_menu =  detailorder.orderdetail[key].nama_menu
+                var amount =  detailorder.orderdetail[key].amount
+                var harga_menu = detailorder.orderdetail[key].harga_menu
+                var sub_total = detailorder.orderdetail[key].sub_total
+                
+                // <tr>
+                //     <td>Ayam Goreng</td>
+                //     <td><b>x</b> 2</td>
+                //     <td><b>@</b> 15000</td>
+                //     <td>30000</td>
+                // </tr>
+
+                $('#table-order-detail').append(
+                    "<tr>"+
+                        "<td>"+ nama_menu +"</td>"+
+                        "<td><b>x</b> "+ amount +"</td>"+
+                        "<td><b>@</b> "+ "Rp. " + harga_menu +  ",00" +"</td>"+
+                        "<td>"+ "Rp. " + sub_total +  ",00" +"</td>"+
+                    "</tr>"
+                )
+
+                document.querySelector('#table-order tbody tr td:nth-child(2)').innerHTML = "Rp. " + total_harga + ",00"
+
+
+            }
+
+            console.log(detailorder.orderdetail)
+
+            //console.log(detailorder.user_id)
+        </script>
     </body>
 
 </html>
