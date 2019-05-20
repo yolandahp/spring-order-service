@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.pbkk.orderservice.aop.TokenRequired;
 import com.pbkk.orderservice.model.OrderDetail;
 import com.pbkk.orderservice.service.OrderDetailService;
 import com.pbkk.orderservice.service.OrderService;
@@ -31,11 +32,13 @@ public class OrderDetailController {
 	@Autowired
 	OrderService orderService;
 	
+	@TokenRequired
 	@GetMapping("/{id}/details")
 	public List<OrderDetail> getOrderDetails(@PathVariable(name = "id") Long orderId){
 		return orderDetailService.getOrderDetails(orderId);
 	}
 	
+	@TokenRequired
 	@PostMapping("/{id}/details")
 	@ResponseStatus(HttpStatus.CREATED)
 	public OrderDetail addOrderDetail(
@@ -45,6 +48,7 @@ public class OrderDetailController {
 		return orderDetailService.createOrderDetail(orderId, orderDetail);
 	}
 	
+	@TokenRequired
 	@PutMapping("/{id}/details/{detailId}")
 	public OrderDetail updateOrderDetail(
 			@PathVariable(name = "id") Long orderId,
@@ -54,6 +58,7 @@ public class OrderDetailController {
 		return orderDetailService.updateOrderDetail(orderDetailId, orderDetail);
 	}
 	
+	@TokenRequired
 	@DeleteMapping("/{id}/details/{detailId}")
 	public ResponseEntity<?> deleteOrderDetail(
 			@PathVariable(name = "id") Long orderId,
