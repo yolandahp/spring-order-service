@@ -303,3 +303,14 @@ a.button-order:active {
     text-align: center;
     margin-top: 50px;
 }
+
+.history-container .card .card-header {
+    background-color: #72B01D;
+}
+
+
+/*tambahan*/
+
+#modalLogin .modal-footer button {
+    background-color: #72B01D;
+}
