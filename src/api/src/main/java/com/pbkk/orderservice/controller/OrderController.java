@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
 
+import com.pbkk.orderservice.aop.TokenRequired;
 import com.pbkk.orderservice.model.Order;
 import com.pbkk.orderservice.model.OrderDetail;
 import com.pbkk.orderservice.service.OrderDetailService;
@@ -32,6 +33,7 @@ public class OrderController {
 	@Autowired
 	private OrderDetailService orderDetailService;
 	
+	@TokenRequired
 	@GetMapping()
 	public List<Order> getAllOrder(
 			@RequestParam(name = "status", required = false) String status,
@@ -58,6 +60,7 @@ public class OrderController {
 	}
 	
 	
+	@TokenRequired
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Order createOrder(
@@ -89,11 +92,13 @@ public class OrderController {
 		return fixOrder;
 	}
 	
+	@TokenRequired
 	@GetMapping("{id}")
 	public Order getOrder(@PathVariable("id") Long orderId) {
 		return orderService.getOrder(orderId);
 	}
 	
+	@TokenRequired
 	@PatchMapping("/{id}/status")
 	public Order updateOrderStatus(
 			@PathVariable(name = "id") Long orderId,
