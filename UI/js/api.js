@@ -1,12 +1,12 @@
 function APIService(){
-    this.BASE_URL_API = {
+    this.baseServiceAPI = {
         'order' : 'https://rapunjel.southeastasia.cloudapp.azure.com/api/',
         'payment' : 'https://pyradian.me:9443/api/v1/',
+        'user' : 'https://rendoru.com/kuliah/pbkk/',
         'restaurant' : '',
         'kitchen' : '',
         'deals' : '',
         'delivery' : '',
-        'user' : '',
     };
 
     this.headers = {
@@ -32,13 +32,13 @@ APIService.prototype.getUserPosition = function() {
     this.userPosition = position.coords.longitude.toString() + ',' + position.coords.latitude.toString();
 }
 
-APIService.prototype.getOrderDeliveryCost = function (restaurantPosition){
+APIService.prototype.getOrderDeliveryCost = async function (restaurantPosition){
     let apiURL = this.baseServiceAPI['delivery'] + 'estimated/';
     apiURL += '?start='+this.userPosition+'&end='+restaurantPosition;
 
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         headers : self.headers,
     })
         .then(response => response.json())
@@ -51,11 +51,11 @@ APIService.prototype.getOrderDeliveryCost = function (restaurantPosition){
 
 // ORDER SERVICE
 
-APIService.prototype.getAllOrder = function () {
+APIService.prototype.getAllOrder = async function () {
     let apiURL = this.baseServiceAPI['order'] + 'orders/';
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         headers : self.headers,
     })
         .then(response => response.json())
@@ -66,11 +66,11 @@ APIService.prototype.getAllOrder = function () {
     return this.dataOrders;
 }
 
-APIService.prototype.getOrder = function (orderId) {
+APIService.prototype.getOrder = async function (orderId) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/' + orderId.toString();
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         headers : self.headers,
     })
         .then(response => response.json())
@@ -81,11 +81,11 @@ APIService.prototype.getOrder = function (orderId) {
     return this.order[orderId];
 }
 
-APIService.prototype.createOrders = function (order) {
+APIService.prototype.createOrders = async function (order) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/';
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         method: 'POST',
         body : JSON.stringify(order),
         headers : self.headers
@@ -98,11 +98,11 @@ APIService.prototype.createOrders = function (order) {
     return this.returnValue;
 }
 
-APIService.prototype.changeOrderStatus = function (orderId, status) {
+APIService.prototype.changeOrderStatus = async function (orderId, status) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/' + orderId.toString() + '/status';
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         method: 'PATCH',
         body : status.toString(),
         headers : self.headers
@@ -115,11 +115,11 @@ APIService.prototype.changeOrderStatus = function (orderId, status) {
     return this.returnValue;
 }
 
-APIService.prototype.getOrderDetails = function(orderId) {
+APIService.prototype.getOrderDetails = async function(orderId) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/' + orderId.toString() + '/details';
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         headers : self.headers,
     })
         .then(response => response.json())
@@ -130,11 +130,11 @@ APIService.prototype.getOrderDetails = function(orderId) {
     return this.orderDetail[orderId];
 }
 
-APIService.prototype.addOrderDetails = function (orderDetail) {
+APIService.prototype.addOrderDetails = async function (orderDetail) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/';
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         method: 'POST',
         body : JSON.stringify(orderDetail),
         headers : self.headers
@@ -147,11 +147,11 @@ APIService.prototype.addOrderDetails = function (orderDetail) {
     return this.returnValue;
 }
 
-APIService.prototype.updateOrderDetails = function (orderId, detailId, orderDetail) {
+APIService.prototype.updateOrderDetails = async function (orderId, detailId, orderDetail) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/' + orderId.toString() + '/details/' + detailId.toString();
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         method: 'PUT',
         body : JSON.stringify(orderDetail),
         headers : self.headers
@@ -164,11 +164,11 @@ APIService.prototype.updateOrderDetails = function (orderId, detailId, orderDeta
     return this.returnValue;
 }
 
-APIService.prototype.deleteOrderDetails = function (orderId, detailId) {
+APIService.prototype.deleteOrderDetails = async function (orderId, detailId) {
     let apiURL = this.baseServiceAPI['order'] + 'orders/' + orderId.toString() + '/details/' + detailId.toString();
     let self = this;
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         method: 'DELETE',
         headers : self.headers
     })
@@ -183,7 +183,7 @@ APIService.prototype.deleteOrderDetails = function (orderId, detailId) {
 
 // PAYMENT SERVICE
 
-APIService.prototype.paymentOrder = function (order) {
+APIService.prototype.paymentOrder = async function (order) {
     let apiURL = this.baseServiceAPI['payment'] + 'transaction/foodorder/';
     let self = this;
 
@@ -205,7 +205,7 @@ APIService.prototype.paymentOrder = function (order) {
         }
     }
 
-    fetch(apiURL, {
+    await fetch(apiURL, {
         method: 'POST',
         body : JSON.stringify(jsonToSend),
         headers : self.headers
