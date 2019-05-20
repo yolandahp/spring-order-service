@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
 				price += orderDetail.getSubTotal();
 			}
 			order.setPrice(price);
-			Double totalPrice = price - order.getDeals();
+			Double totalPrice = price - order.getDeals() + order.getDeliveryCost();
 			order.setTotalPrice(totalPrice);
 			orderRepository.save(order);
 		}
