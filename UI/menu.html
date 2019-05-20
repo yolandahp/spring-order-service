@@ -154,8 +154,8 @@
                                         <h5 class="preview-total-price">0</h5>
                                     </div>
                                     <div style="display: flex;justify-content: space-between;">
-                                        <button type="submit" class="btn btn-default border" data-dismiss="modal" style="width: 100%;">Lihat Menu</button>
-                                        <button type="submit" class="btn btn-default border" style="width: 100%; background: #72B01D;">Lanjut ke Pembayaran</button>
+                                        <button class="btn btn-default border" data-dismiss="modal" style="width: 100%;">Lihat Menu</button>
+                                        <button class="btn btn-default border" style="width: 100%; background: #72B01D;">Lanjut ke Pembayaran</button>
                                     </div>
                                 </div>
         
@@ -187,13 +187,13 @@
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-10">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" id="username-field">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                 <div class="col-sm-10">
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" id="password-field">
                                 </div>
                             </div>
                         </form>
@@ -201,7 +201,7 @@
             
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn" data-dismiss="modal">Login</button>
+                        <button type="button" class="btn" data-dismiss="modal" onclick="login()">Login</button>
                     </div>
             
                 </div>
@@ -211,8 +211,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/api.js"></script>
+        <script>
+            function login(){
+                let server = new APIService()
+                let username = $('#username-field').val();
+                let password = $('#password-field').val();
+
+                let userFetch = server.getUserData(username, password);
+                
+                userFetch.then( data => {
+                    localStorage.setItem('user', data);
+                })
+            }
+        </script>
     </body>
 
 </html>
