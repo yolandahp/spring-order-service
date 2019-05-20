@@ -4,8 +4,8 @@ function APIService(){
         'payment' : 'https://pyradian.me:9443/api/v1/',
         'user' : 'https://rendoru.com/kuliah/pbkk/',
         'deals' : 'https://deals-if-its.azurewebsites.net/api/',
-        'delivery' : '',
-        'restaurant' : '',
+        'delivery' : 'http://delivery.eastus.cloudapp.azure.com/delivery',
+        'restaurant' : 'https://pbkkresserv.southeastasia.cloudapp.azure.com/',
         'kitchen' : '',
     };
 
@@ -198,54 +198,62 @@ APIService.prototype.paymentOrder = async function (order) {
 // USER SERVICE
 
 APIService.prototype.getToken = async function (username, password) {
-    let apiURL = this.baseServiceAPI['user'] + 'oauth/token/';
+    let apiURL = "https://cors-anywhere.herokuapp.com/" + this.baseServiceAPI['user'] + 'oauth/token';
 
     return await fetch(apiURL, {
         method : "POST",
-        body : JSON.stringify({
+        headers : {
+            "Content-Type" : "application/x-www-form-urlencoded",
+            "Authorization" : "Basic " + btoa("order:qwerty123"),
+        },
+        body : new URLSearchParams({
             grant_type : "password",
             username : username,
             password : password,
         }),
-        headers : new Headers({
-            "Content-Type" : "application/x-www-form-urlencoded",
-            "Authorization" : "Basic b3JkZXI6cXdlcnR5MTIz",
-        }),
     })
         .then( response => response.json())
         .then( data => {
+            console.log(data);
             let token = data.access_token;
-            let encodedData = token.split('.')[1];
-            let decodedData = JSON.parse(window.atob(encodedData));
             localStorage.setItem('token', token);
-            localStorage.setItem('decodedJwt', decodedData);
             return data;
         });
 }
 
-APIService.prototype.findUser = async function(userId) {
-    let apiURL = this.baseServiceAPI['user'] + 'users/';
+APIService.prototype.findUser = async function() {
+    let apiURL = "https://cors-anywhere.herokuapp.com/" + this.baseServiceAPI['user'] + 'oauth/check_token';
+    let apiURLUser = "https://cors-anywhere.herokuapp.com/" + this.baseServiceAPI['user'] + 'users/';
+
     let token = localStorage.getItem('token');
     let decodedJwt = localStorage.getItem('decodedJwt');
-    return await fetch(apiURL + userId.toString(), {
-        method : "GET",
+
+    return await fetch(apiURL, {
+        method : "POST",
+        body : new URLSearchParams({
+            token : token
+        }),
         headers : {
             "Authorization" : "Bearer "+token,
         }
     })
         .then( response => response.json() )
         .then( data => {
-            console.log(data);
-            if (data.status == 200 && data.identifier == decodedJwt.user_name ) {
-                return data;
-            } else {
-                if (data.status == 404) return null;
-                return this.findUser(userId+1);
-            }
+            userId = data.sub;
+            return fetch(apiURLUser + userId.toString(), {
+                headers : {
+                    "Authorization" : "Bearer "+token,
+                }  
+            })
+                .then( response => response.json())
+                .then( dataUser => {
+                    localStorage.setItem('user', JSON.stringify(dataUser));
+                    return dataUser;
+                })
         })
 }
 
 APIService.prototype.getUserData = async function(username, password) {
     await this.getToken(username, password)
-    return await this.findUser(1);
+    return await this.findUser();
 }
