@@ -26,9 +26,6 @@ function pilihMenu(id, nama, harga){
 
         $('.preview-total-price').text($('#total').val())
 
-        // $('#tabletr_'+id+' > td:nth-child(2)').text($('#menuId_'+id).val())
-        // $('#tabletr_'+id+' > td:nth-child(3)').text(parseInt($('#menuId_'+id).val()) * harga)
-
     } else {
         $('#tambah_'+id).css("display","none");
         $('#tambah_kurang_'+id).css("display","inline-block");
@@ -341,3 +338,4 @@ $(id2).keydown(function (e) {
     }
 });
 }
+

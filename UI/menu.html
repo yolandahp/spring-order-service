@@ -132,34 +132,33 @@
                                 
                             </div>
                             
-                            <form action="" method="POST" id="formOrder">
-                                <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
-                                        <input type="hidden" name="user_id" value="" id="user_id"/>
-                                        <input type="hidden" name="restaurant_id" value="1" id="restaurant_id"/>
+                            
+                            <div class="modal-body" style="padding-top: 0px; padding-bottom: 0px;">
+                                <input type="hidden" name="user_id" value="1" id="user_id"/>
+                                <input type="hidden" name="restaurant_id" value="1" id="restaurant_id"/>
+                                
+                                <div id="dynamicField"  style="display:none;"></div>
+
+                                <table class="table table-condensed" id="dynamicTable">
+                                    <tbody>
                                         
-                                        <div id="dynamicField"  style="display:none;"></div>
-        
-                                        <table class="table table-condensed" id="dynamicTable">
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>
-                                        <input type="hidden" id="delivery" name="delivery" value="0"/>
-                                        <input type="hidden" name="total" id="total" value="0"/>
-                                        
+                                    </tbody>
+                                </table>
+                                <input type="hidden" id="delivery" name="delivery" value="0"/>
+                                <input type="hidden" name="total" id="total" value="0"/>
+                                    
+                            </div>
+                            <div class="modal-footer" style="padding-top: 0px;">
+                                <div style="display: flex; justify-content: space-between;margin-top: 10px;margin-bottom: 10px;">
+                                    <h5><b>Total Harga Makanan: </b></h5>
+                                    <h5 class="preview-total-price">0</h5>
                                 </div>
-                                <div class="modal-footer" style="padding-top: 0px;">
-                                    <div style="display: flex; justify-content: space-between;margin-top: 10px;margin-bottom: 10px;">
-                                        <h5><b>Total Harga Makanan: </b></h5>
-                                        <h5 class="preview-total-price">0</h5>
-                                    </div>
-                                    <div style="display: flex;justify-content: space-between;">
-                                        <button type="submit" class="btn btn-default border" data-dismiss="modal" style="width: 100%;">Lihat Menu</button>
-                                        <button type="submit" class="btn btn-default border" style="width: 100%; background: #72B01D;">Lanjut ke Pembayaran</button>
-                                    </div>
+                                <div style="display: flex;justify-content: space-between;">
+                                    <button class="btn btn-default border" data-dismiss="modal" style="width: 100%;">Lihat Menu</button>
+                                    <button onclick="goToPayment()" class="btn btn-default border" style="width: 100%; background: #72B01D;">Lanjut ke Pembayaran</button>
                                 </div>
-        
-                            </form>
+                            </div>
+    
                         </div>
                     </div>
                 </div>
@@ -213,6 +212,101 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
         <script src="js/script.js"></script>
+        <script>
+
+            function goToPayment() {
+                
+
+                let menu_restaurant = [];
+                let nama_menu = [];
+                let harga_menu = [];
+                let amount = [];
+                let sub_total = [];
+
+                $("input[name='menu_restaurant_id[]']")
+                .each(function() {
+                    var value = this.value;
+                    menu_restaurant.push(value);
+                });
+
+                $("input[name='amount[]']")
+                .each(function() {
+                    var value = this.value;
+                    amount.push(value);
+                });
+
+                $("input[name='sub_total[]']")
+                .each(function() {
+                    var value = this.value;
+                    sub_total.push(value);
+                });
+
+                $("#dynamicTable tr td:nth-child(1) h5")
+                .each(function() {
+                    var value = this.innerHTML;
+                    nama_menu.push(value);
+                });
+
+                $("#dynamicTable tr td:nth-child(3) div")
+                .each(function() {
+                    var value = this.innerHTML;
+                    harga_menu.push(value);
+                });
+
+                //console.log(document.querySelector(".preview-total-price").innerHTML)
+
+                let orderdetail = "";
+                orderdetail += '{"restaurant_id":"'
+                orderdetail += $("input[name='restaurant_id']").val()
+                orderdetail += '", "user_id":"'
+                orderdetail += $("input[name='user_id']").val()
+                orderdetail += '", "total_harga":"'
+                orderdetail += document.querySelector(".preview-total-price").innerHTML
+
+                orderdetail += '", "orderdetail" : ['
+
+                var arrayLength = menu_restaurant.length;
+                for (var i = 0; i < arrayLength-1; i++) {
+                    orderdetail += '{ "menu_restaurant":"'
+                    orderdetail += menu_restaurant[i]
+                    orderdetail += '", "nama_menu":"'
+                    orderdetail += nama_menu[i]
+                    orderdetail += '", "amount":"'
+                    orderdetail += amount[i]
+                    orderdetail += '", "harga_menu":"'
+                    orderdetail += harga_menu[i]
+                    orderdetail += '", "sub_total":"'
+                    orderdetail += sub_total[i]
+                    orderdetail += '"}, '
+                }
+                
+                orderdetail += '{ "menu_restaurant":"'
+                orderdetail += menu_restaurant[arrayLength-1]
+                orderdetail += '", "nama_menu":"'
+                orderdetail += nama_menu[arrayLength-1]
+                orderdetail += '", "amount":"'
+                orderdetail += amount[arrayLength-1]
+                orderdetail += '", "harga_menu":"'
+                orderdetail += harga_menu[arrayLength-1]
+                orderdetail += '", "sub_total":"'
+                orderdetail += sub_total[arrayLength-1]
+                orderdetail += '"}'
+
+                orderdetail += ']}'
+
+                // console.log(orderdetail)
+            
+                var objdetailorder = JSON.parse(orderdetail);
+
+                localStorage.setItem('detailorder', JSON.stringify(objdetailorder));
+
+                location.href = "payment.html"
+
+
+            }
+
+        </script>
+        
     </body>
 
 </html>
