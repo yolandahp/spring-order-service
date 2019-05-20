@@ -47,6 +47,10 @@ public class Order {
 	private String deliveryAddress;
 	
 	@NotNull
+	@Column(name = "delivery_cost")
+	private float deliveryCost;
+	
+	@NotNull
 	@Column(name = "status")
 	private Integer status;
 	
