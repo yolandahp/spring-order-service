@@ -2,14 +2,18 @@ package com.pbkk.orderservice.aop;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.pbkk.orderservice.exception.UnauthorizedException;
 import com.pbkk.orderservice.service.CustomerAPICallService;
 
+@Aspect
+@Component
 public class TokenRequiredAspect {
 	
 	@Autowired
