@@ -25,11 +25,10 @@ public class CustomerAPICallServiceImpl implements CustomerAPICallService {
 	
 	@Override
 	public boolean checkToken(String token) {
-		Call<Map<String, Object>> tokenCheck = customerAPICall.checkToken(token, token);
+		Call<Map<String, Object>> tokenCheck = customerAPICall.checkToken("application/x-www-form-urlencoded", token, token.split(" ")[1]);
 		Response<Map<String, Object>> respToken;
 		try {
 			respToken = tokenCheck.execute();
-			System.out.println(respToken.code());
 			if (respToken.code() != 200)
 				return false;
 			return true;
