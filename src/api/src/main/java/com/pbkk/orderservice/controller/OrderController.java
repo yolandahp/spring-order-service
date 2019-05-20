@@ -67,6 +67,7 @@ public class OrderController {
 		newOrder.setCustomerId(orderRequest.getCustomerId());
 		newOrder.setRestaurantId(orderRequest.getRestaurantId());
 		newOrder.setDeliveryAddress(orderRequest.getDeliveryAddress());
+		newOrder.setDeliveryCost(orderRequest.getDeliveryCost());
 		newOrder.setStatus(orderRequest.getStatus());
 		newOrder.setNotes(orderRequest.getNotes());
 		newOrder.setPrice(orderRequest.getPrice());
