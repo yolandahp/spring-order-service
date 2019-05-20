@@ -77,78 +77,6 @@
             <div class="container">
                 <h3>Restaurants</h3>
                 <div class="row card-container">
-                    
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro3-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5><a href="menu.html">Ayam Keprabon</a></h5>
-                                <p class="card-text">Jl. Klampis Jaya No.8B, Klampis Ngasem, Kec. Sukolilo, Kota SBY, Jawa Timur</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro5-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5><a href="menu.html">Ayam Goreng Nelongso</a></h5>
-                                <p class="card-text">Jl. Raya Mulyosari, Kalisari, Kec. Mulyorejo, Kota SBY, Jawa Timur</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro4-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5><a href="menu.html">Ikan Bakar Keputih</a></h5>
-                                <p class="card-text">Jl. KH. Ahmad Dahlan No.5, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro2-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5><a href="menu.html">McDonald's Mulyosari</a></h5>
-                                <p class="card-text">Ruko Central Park, Komplek, Jl. Raya Mulyosari Jl. Mulyosari Utara, Kalisari, Kec. Mulyorejo, Kota SBY, Jawa Timur</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro1-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5><a href="menu.html">Ayam Geprek Gepruk</a></h5>
-                                <p class="card-text">Jl. Karang Menjangan No.112, Airlangga, Kec. Gubeng, Kota SBY, Jawa Timur</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5><a href="menu.html">Bakso Pak Anton</a></h5>
-                                <p class="card-text">Jl. Wisma Permai Barat I No.MM19, Kejawaan Putih Tamba, Kec. Mulyorejo, Kota SBY, Jawa Timur</p>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -197,6 +125,45 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
         <script src="js/script.js"></script>
+        <script>
+            var restaurants = JSON.parse('[ { "id_restoran": 1, "nama_restoran": "AYAM KEPRABON", "alamat": "Jl. Klampis Jaya No.8B, Klampis Ngasem, Kec.zSukolilo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "keprabon@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }, { "id_restoran": 2, "nama_restoran": "AYAM GORENG NELONGSO", "alamat": "Jl. Raya Mulyosari, Kalisari, Kec. Mulyorejo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "nelongso@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }, { "id_restoran": 3, "nama_restoran": "IKAN BAKAR KEPUTIH", "alamat": "Jl. KH. Ahmad Dahlan No.5, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "ibk@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }, { "id_restoran": 4, "nama_restoran": "MCDONALDS MULYOSARI", "alamat": "Ruko Central Park, Komplek, Jl. Raya Mulyosari Jl. Mulyosari Utara, Kalisari, Kec. Mulyorejo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "mcd@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }, { "id_restoran": 5, "nama_restoran": "AYAM KEPRABON", "alamat": "Jl. Klampis Jaya No.8B, Klampis Ngasem, Kec.zSukolilo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "keprabon@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }, { "id_restoran": 6, "nama_restoran": "AYAM GORENG NELONGSO", "alamat": "Jl. Raya Mulyosari, Kalisari, Kec. Mulyorejo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "nelongso@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }, { "id_restoran": 7, "nama_restoran": "IKAN BAKAR KEPUTIH", "alamat": "Jl. KH. Ahmad Dahlan No.5, Keputih, Kec. Sukolilo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "ibk@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 } ]');
+
+            var restaurant_photos = [
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro3-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro1-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro5-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro2-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro4-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro-300x300.jpg",
+            ]
+
+
+            for (var key in restaurants) {
+                var id_restoran = restaurants[key].id_restoran
+                var nama_restoran = restaurants[key].nama_restoran
+                var alamat = restaurants[key].alamat
+
+                $('.row.card-container').append(
+                    "<div class='col-md-3 d-flex align-items-stretch'>"+
+                        "<div class='card'>"+
+                            "<div class='card-img'>"+
+                                "<img src='"+ restaurant_photos[key%6] +"' class='card-img-top' alt=''>"+
+                            "</div>"+
+                            "<div class='card-body'>"+
+                                "<h5><a href='menu.html' onclick='return storeIdResto("+id_restoran+")'>"+ nama_restoran +"</a></h5>"+
+                                "<p class='card-text'>"+ alamat +"</p>"+
+                            "</div>"+
+                        "</div>"+
+                    "</div>"
+                )
+            }
+
+            function storeIdResto (id) {
+                localStorage.setItem('IdResto', String(id));
+            }
+
+            
+        </script>
     </body>
 
 </html>

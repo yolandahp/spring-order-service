@@ -18,7 +18,10 @@ function pilihRestaurant(id){
     $('#restaurant_id').val(id);
 }
 
-function pilihMenu(id, nama, harga){
+function pilihMenu(id, harga){
+
+    var nama = $("#namamenu_"+String(id)).text()
+
     if(orderMenuId.find(e => e == id) !== undefined){
         $('#menuId_'+id).val( parseInt($('#menuId_'+id).val()) + 1);
         $('#hargaMenuId_'+id).val( parseInt($('#menuId_'+id).val()) * harga)
@@ -99,7 +102,8 @@ function hapusMenu(id, harga){
 
 //plugin bootstrap minus and plus
 //http://jsfiddle.net/laelitenetwork/puJ6G/
-$('.btn-number').click(function(e){
+$(document).on('click', '.btn-number', function(e) {
+    
     e.preventDefault();
     
     fieldName = $(this).attr('data-field');
@@ -177,6 +181,8 @@ $('.btn-number').click(function(e){
         input.val(0);
     }
 });
+
+
 $('.input-number').focusin(function(){
     $(this).data('oldValue', $(this).val());
     });
@@ -220,7 +226,6 @@ $(".input-number").keydown(function (e) {
 
 
 function test(id,id2){
-    console.log(id);
     $(id).click(function(e){
     e.preventDefault();
     

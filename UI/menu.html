@@ -38,9 +38,9 @@
             <div class="shadow rounded header-restaurant">
                 <img src="images/home-slider1.jpg" class="rounded" alt="First Slide">
                 <div class="header-caption">
-                    <h3>Ayam Keprabon</h3>
-                    <h5>Jl. Klampis Jaya No.8B, Klampis Ngasem, Kec. Sukolilo, Kota SBY, Jawa Timur</h5>
-                    <h5>(0335) 8421238</h5>
+                    <h3 class="header-nama-resto"></h3>
+                    <h5 class="header-alamat-resto"></h5>
+                    <h5 class="header-no-telp"></h5>
                 </div>
                 <div class="overlay"></div>
             </div>
@@ -48,72 +48,7 @@
             <div class="container">
                 <h3>Menu</h3>
                 <div class="row card-container">
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro3-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5>Ayam Goreng</h5>
-                                <p class="card-text">Ayam goreng dengan rempah yang khas</p>
-
-                                <div class="inline">
-                                    <p id="harga_1" data-harga="20000"></b>Rp 20.000,00</b></p>
-                                    <button class="btn btn-sm" id="tambah_1" onclick="pilihMenu(1, 'Ayam Goreng', 20000)">+ Add</button>
-                                    <div class="tambah-kurang" id="tambah_kurang_1" style="display: none;">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="jumlah_1" id="__1">
-                                                    -
-                                                </button>
-                                            </span>
-                                            <input type="text" name="jumlah_1" class="form-control input-number" value="1" min="1" max="10">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="jumlah_1">
-                                                    +
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 d-flex align-items-stretch">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro3-300x300.jpg" class="card-img-top" alt="">
-                            </div>
-                            <div class="card-body">
-                                <h5>Ikan Goreng</h5>
-                                <p class="card-text">Ikan goreng dengan rempah yang khas</p>
-
-                                <div class="inline">
-                                    <p id="harga_2" data-harga="15000"><b>Rp 15.000,00</b></p>
-                                    <button class="btn btn-sm" id="tambah_2" onclick="pilihMenu(2, 'Ikan Goreng', 15000)">+ Add</button>
-                                    <div class="tambah-kurang" id="tambah_kurang_2" style="display: none;">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="jumlah_2" id="__2">
-                                                    -
-                                                </button>
-                                            </span>
-                                            <input type="text" name="jumlah_2" class="form-control input-number" value="1" min="1" max="10">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="jumlah_2">
-                                                    +
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
+                    
                 </div>
 
                 <div class="preview-price">
@@ -214,6 +149,78 @@
         <script src="js/script.js"></script>
         <script>
 
+            var restaurant = JSON.parse('{ "id_restoran": 1, "nama_restoran": "AYAM KEPRABON", "alamat": "Jl. Klampis Jaya No.8B, Klampis Ngasem, Kec.zSukolilo, Kota SBY, Jawa Timur", "no_telp": "085932251683", "email": "keprabon@gmail.com", "latitude": -7.2896292, "longitude": 112.7765009 }')
+
+            var id_restoran = restaurant.id_restoran
+            var nama_restoran = restaurant.nama_restoran
+            var alamat = restaurant.alamat
+            var no_telp = restaurant.no_telp
+            var email = restaurant.email
+            var latitude = restaurant.latitude
+            var longitude = restaurant.longitude
+
+            $('.header-nama-resto').text(nama_restoran)
+            $('.header-alamat-resto').text(alamat)
+            $('.header-no-telp').text(no_telp +", " + email)
+
+            $("input[name='restaurant_id']").val(id_restoran)
+
+
+            var menus = JSON.parse('[ { "id_restoran": 1, "id_menu": 1, "nama_menu": "Ayam Goreng", "detail_menu": "Ayam goreng dimasak dengan rempah yang khas", "harga": 15000 }, { "id_restoran": 1, "id_menu": 2, "nama_menu": "Ikan Goreng", "detail_menu": "Ikan goreng dimasak dengan rempah yang khas", "harga": 12000 }, { "id_restoran": 1, "id_menu": 3, "nama_menu": "Bebek Goreng", "detail_menu": "Bebek goreng dimasak dengan rempah yang khas", "harga": 20000 }, { "id_restoran": 1, "id_menu": 4, "nama_menu": "Jamur Goreng", "detail_menu": "Jamur goreng krispi dimasak dengan tepung yang nikmat", "harga": 5000 }, { "id_restoran": 1, "id_menu": 5, "nama_menu": "Tempe Goreng", "detail_menu": "Tempe goreng dimasak dengan rempah yang khas", "harga": 2000 }, { "id_restoran": 1, "id_menu": 6, "nama_menu": "Nasi Goreng", "detail_menu": "Nasi goreng dimasak dengan bumbu yang khas", "harga": 12000 } ]')
+
+            var menu_photos = [
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro3-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro1-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro5-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro2-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro4-300x300.jpg",
+                "http://demo3.ltheme.com/wordpress/lt-foodcourt/wp-content/uploads/2017/11/pro-300x300.jpg",
+            ]
+
+            for (var key in menus) {
+                var id_menu = menus[key].id_menu
+                var nama_menu = menus[key].nama_menu
+                var detail_menu = menus[key].detail_menu
+                var harga = menus[key].harga
+
+                    
+                $('.row.card-container').append(
+                    "<div class='col-md-3 d-flex align-items-stretch'>"+
+                        "<div class='card'>"+
+                            "<div class='card-img'>"+
+                                "<img src='"+ menu_photos[key%6] +"' class='card-img-top' alt=''>"+
+                            "</div>"+
+                            "<div class='card-body'>"+
+                                "<h5 id='namamenu_"+ id_menu +"'>"+nama_menu+"</h5>"+
+                                "<p class='card-text'>"+detail_menu+"</p>"+
+
+                                "<div class='inline'>"+
+                                    "<p id='harga_"+ id_menu +"' data-harga='"+harga+"'></b>Rp "+ harga +",00</b></p>"+
+                                    "<button class='btn btn-sm' id='tambah_"+ id_menu +"'  onclick='pilihMenu("+ id_menu + "," + harga +")'>+ Add</button>"+
+                                    "<div class='tambah-kurang' id='tambah_kurang_"+ id_menu +"' style='display: none;'>"+
+                                        "<div class='input-group'>"+
+                                            "<span class='input-group-btn'>"+
+                                                "<button type='button' class='btn btn-default btn-number' data-type='minus' data-field='jumlah_"+ id_menu +"' id='__" + id_menu + "'>"+
+                                                    "-"+
+                                                "</button>"+
+                                            "</span>"+
+                                            "<input type='text' name='jumlah_"+ id_menu +"' class='form-control input-number' value='1' min='1' max='10'>"+
+                                            "<span class='input-group-btn'>"+
+                                                "<button type='button' class='btn btn-default btn-number' data-type='plus' data-field='jumlah_"+ id_menu +"'>"+
+                                                    "+"+
+                                                "</button>"+
+                                            "</span>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+
+                            "</div>"+
+
+                        "</div>"+
+                    "</div>"
+                )
+            }
+
             function goToPayment() {
                 
 
@@ -260,6 +267,10 @@
                 orderdetail += $("input[name='restaurant_id']").val()
                 orderdetail += '", "user_id":"'
                 orderdetail += $("input[name='user_id']").val()
+                orderdetail += '", "latitude":"'
+                orderdetail += latitude
+                orderdetail += '", "longitude":"'
+                orderdetail += longitude
                 orderdetail += '", "total_harga":"'
                 orderdetail += document.querySelector(".preview-total-price").innerHTML
 
@@ -314,6 +325,9 @@
                     localStorage.setItem('user', data);
                 })
             }
+
+            var idresto = localStorage.getItem('IdResto')
+            console.log(idresto)
 
         </script>
         

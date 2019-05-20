@@ -124,6 +124,8 @@
             var user_id = detailorder.user_id
             var restaurant_id = detailorder.restaurant_id
             var total_harga = detailorder.total_harga
+            var latitude = detailorder.latitude
+            var longitude = detailorder.longitude
             
             for ( var key in detailorder.orderdetail ) {
                 var id_menu =  detailorder.orderdetail[key].menu_restaurant
@@ -131,13 +133,6 @@
                 var amount =  detailorder.orderdetail[key].amount
                 var harga_menu = detailorder.orderdetail[key].harga_menu
                 var sub_total = detailorder.orderdetail[key].sub_total
-                
-                // <tr>
-                //     <td>Ayam Goreng</td>
-                //     <td><b>x</b> 2</td>
-                //     <td><b>@</b> 15000</td>
-                //     <td>30000</td>
-                // </tr>
 
                 $('#table-order-detail').append(
                     "<tr>"+
@@ -153,9 +148,12 @@
 
             }
 
-            console.log(detailorder.orderdetail)
+            let end = String(latitude) + "," + String(longitude)
+            let server = new APIService()
+            let delivery_cost = server.getOrderDeliveryCost(end)
 
-            //console.log(detailorder.user_id)
+            console.log(delivery_cost)
+
         </script>
     </body>
 
