@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Order Service</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-light bg-light navbar-expand-lg ">
+            <div class="collapse navbar-collapse justify-content-between">
+                <a class="navbar-brand mr-auto" href="restaurant.html">
+                    <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    MyFood
+                </a>
+                <ul class="navbar-nav">
+                    <a class="nav-item nav-link" data-toggle="modal" data-target="#modalLogin">Login</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            yolandahp
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="historyorder.html">Order History</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container py-2">
+            <h2 class="font-weight-light text-center text-muted py-3">Order Status</h2>
+            
+            <!-- timeline item 1 -->
+            <div class="row" id="track-confirmed">
+            
+                <!-- timeline item 1 left dot -->
+                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                        <div class="col">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                </div>
+                
+                <!-- timeline item 1 event content -->
+                <div class="col py-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-muted">Confirmed</h4>
+                            <p class="card-text">We have received your order and We are preparing your order.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--/row-->
+            <!-- timeline item 2 -->
+            
+            <div class="row" id="track-delivering">
+                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                        <span class="badge badge-pill bg-success">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                </div>
+
+                <div class="col py-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-muted">Delivering</h4>
+                            <p class="card-text">The driver is on the way with your food!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            <!--/row-->
+            <!-- timeline item 3 -->
+            <div class="row" id="track-delivered">
+                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                </div>
+
+                <div class="col py-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-muted">Delivered</h4>
+                            <p class="card-text">The driver has arrived at your location.</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+            
+            <!--/row-->
+            <!-- timeline item 4 -->
+            <div class="row" id="track-completed">
+                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                    <div class="row h-50">
+                        <div class="col border-right">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                    <h5 class="m-2">
+                        <span class="badge badge-pill bg-light border">&nbsp;</span>
+                    </h5>
+                    <div class="row h-50">
+                        <div class="col">&nbsp;</div>
+                        <div class="col">&nbsp;</div>
+                    </div>
+                </div>
+                
+                <div class="col py-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title text-muted">Completed</h4>
+                            <p class="card-text">BOOM!! Enjoy your food.</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+            <!--/row-->
+        </div>
+        <!--container-->
+   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <script src="js/script.js"></script>
+        <script src="js/api.js"></script>
+        <script>
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
