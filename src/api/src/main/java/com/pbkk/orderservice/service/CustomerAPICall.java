@@ -11,7 +11,8 @@ import retrofit2.http.POST;
 public interface CustomerAPICall {
 	
 	@FormUrlEncoded
-	@POST("/oauth/check_token")
-	Call<Map<String, Object>> checkToken( @Header("Authorization") String tokenAuth,
+	@POST("oauth/check_token")
+	Call<Map<String, Object>> checkToken( @Header("Content-Type") String content_type,
+										  @Header("Authorization") String tokenAuth,
 										  @Field("token") String tokenChecked);
 }
