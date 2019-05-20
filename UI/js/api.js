@@ -55,9 +55,7 @@ APIService.prototype.getAllOrder = async function () {
     let apiURL = this.baseServiceAPI['order'] + 'orders/';
     let self = this;
 
-    await fetch(apiURL, {
-        headers : self.headers,
-    })
+    await fetch(apiURL)
         .then(response => response.json())
         .then(data => {
             self.dataOrders = data;
