@@ -11,7 +11,7 @@ function APIService(){
 
     this.headers = {
         "Content-Type" : "application/json",
-        "Authorization" : "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJST09UIiwibmFtZSI6Im9yZGVyX3NlcnZpY2UiLCJyb2wiOiJBRE1JTiJ9.5B8OQdekrfbgw3XwA3dmCh-vZTmnaYVpfOT4bwI2KxG4B0ErEGBLIkF1CM5HwnITYLmT3cXal6FYXPzEtOXelQ",
+        "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfdHlwZSI6InVzZXIiLCJ1c2VyX25hbWUiOiJjdXN0b21lciIsInNjb3BlIjpbInJlYWRfZHJpdmVyIiwicmVhZF91c2VyIiwicmVhZF9yZXN0YXVyYW50Il0sImV4cCI6MTU1ODQ3OTU5NiwiYXV0aG9yaXRpZXMiOlsiVXNlciJdLCJqdGkiOiJhN2EzZjBiMi05Mjg1LTQwNjQtOGI1Mi0yYzU3NDNmOWU2Y2EiLCJjbGllbnRfaWQiOiJvcmRlciJ9.vYs8Cf8v4b6URRS_A_gpOBjLc7qTgSMTG0fqw9c5sSM",
     }
 
     this.deliveryCost = 0;
@@ -53,6 +53,7 @@ APIService.prototype.getUserPosition = function(position) {
         .then( cost => {
             console.log(cost.cost);
             $('#delivery-cost').text(cost.cost);
+            $('#total').text(parseInt(cost.cost) + parseInt(window.total_harga));
         })
 }
 
