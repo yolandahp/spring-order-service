@@ -63,7 +63,7 @@
                             </tr>
                             <tr>
                                 <td>Biaya Antar</td>
-                                <td>10000</td>
+                                <td id="delivery-cost">10000</td>
                             </tr>
                             <tr>
                                 <td>Promo</td>
@@ -149,11 +149,13 @@
 
             }
 
-            let end = String(latitude) + "," + String(longitude)
+            var end = String(latitude) + "," + String(longitude)
             let server = new APIService()
-            let delivery_cost = server.getOrderDeliveryCost(end)
-
-            console.log(delivery_cost)
+            let deliveryFetch = server.initGeolocation(end)
+            deliveryFetch.then( cost => {
+                console.log(cost)
+                $('#delivery-cost').innerHTML = cost;
+            })
 
         </script>
     </body>

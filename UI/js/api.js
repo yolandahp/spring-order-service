@@ -4,7 +4,7 @@ function APIService(){
         'payment' : 'https://pyradian.me:9443/api/v1/',
         'user' : 'https://rendoru.com/kuliah/pbkk/',
         'deals' : 'https://deals-if-its.azurewebsites.net/api/',
-        'delivery' : 'http://delivery.eastus.cloudapp.azure.com/delivery',
+        'delivery' : 'http://delivery.eastus.cloudapp.azure.com/delivery/',
         'restaurant' : 'https://pbkkresserv.southeastasia.cloudapp.azure.com/',
         'kitchen' : '',
     };
@@ -23,31 +23,37 @@ function APIService(){
 
 // DELIVERY SERVICE
 
-APIService.prototype.initGeolocation = function() {
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.getUserPosition);
-    }
-}
-
-APIService.prototype.getUserPosition = function() {
-    this.userPosition = position.coords.longitude.toString() + ',' + position.coords.latitude.toString();
-}
-
 APIService.prototype.getOrderDeliveryCost = async function (restaurantPosition){
-    let apiURL = this.baseServiceAPI['delivery'] + 'estimated/';
+    let apiURL = "https://cors-anywhere.herokuapp.com/" + this.baseServiceAPI['delivery'] + 'estimated';
     apiURL += '?start='+this.userPosition+'&end='+restaurantPosition;
+
+    let token = localStorage.getItem('token');
 
     let self = this;
 
-    await fetch(apiURL, {
-        headers : self.headers,
+    return await fetch(apiURL, {
+        headers : {
+            "Content-Type" : "application/json",
+            "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJfdHlwZSI6InVzZXIiLCJ1c2VyX25hbWUiOiJjdXN0b21lciIsInNjb3BlIjpbInJlYWRfZHJpdmVyIiwicmVhZF91c2VyIiwicmVhZF9yZXN0YXVyYW50Il0sImV4cCI6MTU1ODQ3OTU5NiwiYXV0aG9yaXRpZXMiOlsiVXNlciJdLCJqdGkiOiJhN2EzZjBiMi05Mjg1LTQwNjQtOGI1Mi0yYzU3NDNmOWU2Y2EiLCJjbGllbnRfaWQiOiJvcmRlciJ9.vYs8Cf8v4b6URRS_A_gpOBjLc7qTgSMTG0fqw9c5sSM", // + token.toString()
+            "Authentication" : "hehe", 
+        },
     })
         .then(response => response.json())
-        .then(data => {
-            self.deliveryCost = data.cost;
-        });
+}
 
-    return this.deliveryCost;
+APIService.prototype.initGeolocation = async function(restaurantPosition) {
+    if(navigator.geolocation) {
+        return await navigator.geolocation.getCurrentPosition(this.getUserPosition.bind(this));
+    } 
+}
+
+APIService.prototype.getUserPosition = function(position) {
+    this.userPosition = position.coords.longitude.toString() + ',' + position.coords.latitude.toString();
+    return this.getOrderDeliveryCost(window.end)
+        .then( cost => {
+            console.log(cost.cost);
+            $('#delivery-cost').text(cost.cost);
+        })
 }
 
 // ORDER SERVICE
